@@ -63,12 +63,51 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+X = [ones(m,1) X];
+a1 = X;
+z2 = X * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(m,1) a2];
+z3 = a2 * Theta2';
+h = sigmoid(z3);
+
+% recode the labels matrix as vectors contain only zeros and ones
+ycon = y == 1;
+for i = 2:num_labels
+	yk = y == i;
+	ycon = [ycon yk];
+end
+
+elementCost = ((-ycon .* log(h)) - ((1-ycon).* log(1-h)));
+firstSigma = sum(elementCost,2);
+J = sum(firstSigma)/m;
 
 
+% Another solution more optimized for space cost
+%{
+for k = 1:num_labels
+    yk = y == k;
+    hthetak = htheta(:, k);
+    Jk = 1 / m * sum(-yk .* log(hthetak) - (1 - yk) .* log(1 - hthetak));
+    J = J + Jk;
+end
+
+%} 
 
 
+regularization = 0;
+for i = 1:size(Theta1,1)
+	for j = 2:size(Theta1,2)
+		regularization = regularization + Theta1(i,j)*Theta1(i,j);
+	end
+end
+for i = 1:size(Theta2,1)
+	for j = 2:size(Theta2,2)
+		regularization = regularization + Theta2(i,j)*Theta2(i,j);
+	end
+end
 
-
+J = J + ((lambda/(2*m))*regularization);
 
 
 
