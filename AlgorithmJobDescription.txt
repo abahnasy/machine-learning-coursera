@@ -1,0 +1,16 @@
+0-4 Years of Experience.
+University Degree in Computer Science, Aerospace, Computer Engineering or any other relavant field. (Having a Masters or a PhD is a huge plus).
+Have solid foundations in Mathematics, Statistics & Robotics applications.
+Familiarity with a combination of one of the following:Linux, Python, Deep Learning Libraries, C/C++/OpenGL/OpenCL, ROS & Matlab.
+Have some knowledge in at least one of the following:
+Deep learning & Machine learning techniques.
+Statistical Modelling, Optimisation and Mathematics.
+Computer vision, Image Processing and Signal Processing.
+Control theory & Artificial Intelligence.
+State estimation and sensor fusion techniques [Kalman filter, particle filter, SLAM etc...].
+3D reconstruction, Structure from Motion and similar algorithms.
+Parallell computing (GPU, DSP/FPGA...)
+Having Published Papers, Patents (Pending or Published) is a huge plus.
+Having the ability to demonstrate previous work samples related to the field is a huge plus
+Excellent command of English language (Written and Spoken).
+German & Swedish are a huge plus.

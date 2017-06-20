@@ -63,13 +63,14 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
-X = [ones(m,1) X];
-a1 = X;
-z2 = X * Theta1';
+a1 = [ones(m,1) X];
+
+z2 = a1 * Theta1';
 a2 = sigmoid(z2);
 a2 = [ones(m,1) a2];
 z3 = a2 * Theta2';
 h = sigmoid(z3);
+
 
 % recode the labels matrix as vectors contain only zeros and ones
 ycon = y == 1;
@@ -120,6 +121,40 @@ J = J + ((lambda/(2*m))*regularization);
 
 
 % -------------------------------------------------------------
+
+
+% second part implementation
+%my implementation
+
+for i = 1:m
+   
+%setting a_1 to ith training example and add bias term at first.
+a_1 = [1; X(i,:)'];
+
+%a_1 = [1; a_1];
+%fprintf("size Theta 1\n");
+
+
+z_2 = Theta1 * a_1;
+
+a_2 = sigmoid(z_2);
+a_2 = [1;a_2];
+z_3 = Theta2 * a_2;
+a_3 = sigmoid(z_3);
+
+yk_i = ([1:num_labels]==y(i))';
+delta_3 = a_3 - yk_i;
+delta_2 = (Theta2' * delta_3).* [1; sigmoidGradient(z_2)];
+delta_2 = delta_2(2:end);
+
+Theta1_grad = Theta1_grad + delta_2 * a_1';
+Theta2_grad = Theta2_grad + delta_3 * a_2';
+
+end
+
+Theta1_grad = (1/m).* Theta1_grad + (lambda/m) * [zeros(size(Theta1, 1), 1) Theta1(:,2:end)];
+Theta2_grad = (1/m).* Theta2_grad + (lambda/m) * [zeros(size(Theta2, 1), 1) Theta2(:,2:end)];
+
 
 % =========================================================================
 
